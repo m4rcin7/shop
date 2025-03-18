@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-
 import Link from "next/link";
 import { FaPaintBrush } from "react-icons/fa";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
@@ -9,85 +8,75 @@ import { TbMenuDeep } from "react-icons/tb";
 export default function Header() {
   const [navMobile, setNavMobile] = useState(false);
 
-  const handleToggle = () => {
-    setNavMobile(!navMobile);
-  };
-
-  const navClasses =
-    "p-3 flex items-center justify-between bg-neutral-800 text-neutral-100";
-  const ulClasses = "flex items-center gap-[50px] text-xl p-3";
-  const linkClasses = "border-2 p-3 rounded-lg hover:bg-neutral-600";
-  const logoClasses = "border-2 p-5 rounded-full cursor-pointer";
-
-  const burgerMenu = "text-[35px] cursor-pointer";
-  const mobileMenuClasses = navMobile
-    ? "max-h-screen opacity-100"
-    : "max-h-0 opacity-0";
-  const mobileClasses = "w-full flex justify-around";
-  const mobileUlClasses =
-    "w-full flex flex-col items-center gap-4 overflow-hidden transition-all duration-500 ease-linear";
-  const mobileLinkClasses = "border-0";
-
   return (
-    <header>
-      {/* desktop */}
-      <nav className={`${navClasses} hidden lg:flex`}>
-        <Link href="/" className={logoClasses}>
+    <header className="w-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg fixed top-0 left-0 z-50">
+      {/* Desktop Navigation */}
+      <nav className="hidden lg:flex justify-between items-center px-auto py-2 text-white max-w-screen-xl mx-auto">
+        <Link
+          href="/"
+          className="text-4xl font-bold text-white p-3 rounded-full hover:bg-white hover:text-black transition-all duration-300"
+        >
           <FaPaintBrush />
         </Link>
-        <ul className={ulClasses}>
-          <Link className={linkClasses} href="/">
-            Home
-          </Link>
-          <Link className={linkClasses} href="/about">
-            About Me
-          </Link>
-          <Link className={linkClasses} href="/pictures">
-            Pictures
-          </Link>
-          <Link className={linkClasses} href="/contact">
-            Contact
-          </Link>
-        </ul>{" "}
-        <Link className={linkClasses} href="/store">
+        <ul className="flex items-center gap-10 text-lg">
+          {["Home", "About Me", "Pictures", "Contact"].map((name) => (
+            <li key={name}>
+              <Link
+                href={`/${name.toLowerCase().replace(" ", "")}`}
+                className="px-auto py-2 rounded-lg hover:bg-white hover:text-black transition-all duration-300"
+              >
+                {name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link
+          href="/store"
+          className="text-3xl font-bold text-white p-3 rounded-full hover:bg-white hover:text-black transition-all duration-300"
+        >
           <MdOutlineLocalGroceryStore />
         </Link>
       </nav>
-      {/* tablet/mobile */}
-      <nav className={`${navClasses} flex-col lg:hidden`}>
-        <div className={mobileClasses}>
-          <Link href="/" className={logoClasses}>
+
+      {/* Mobile Navigation */}
+      <nav className="lg:hidden flex flex-col px-6 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-600">
+        <div className="flex justify-between items-center">
+          <Link
+            href="/"
+            className="text-4xl font-bold text-white p-3 rounded-full hover:bg-white hover:text-black transition-all duration-300"
+          >
             <FaPaintBrush />
           </Link>
-          <div className="flex items-center gap-10">
-            <TbMenuDeep onClick={handleToggle} className={burgerMenu} />
+          <div className="flex items-center gap-6">
             <Link
-              className={`${linkClasses} ${mobileLinkClasses}`}
               href="/store"
+              className="text-3xl font-bold text-white p-3 rounded-full hover:bg-white hover:text-black transition-all duration-300"
             >
               <MdOutlineLocalGroceryStore />
             </Link>
+            <TbMenuDeep
+              onClick={() => setNavMobile(!navMobile)}
+              className="text-4xl cursor-pointer hover:text-white transition-all duration-300"
+            />
           </div>
         </div>
-        <ul className={`${mobileUlClasses} ${mobileMenuClasses}`}>
-          <Link className={`${linkClasses} ${mobileLinkClasses}`} href="/">
-            Home
-          </Link>
-          <Link className={`${linkClasses} ${mobileLinkClasses}`} href="/about">
-            About Me
-          </Link>
-          <Link
-            className={`${linkClasses} ${mobileLinkClasses}`}
-            href="/pictures"
-          >
-            Pictures
-          </Link>
-          <Link
-            className={`${linkClasses} ${mobileLinkClasses}`}
-            href="/contact"
-          >
-            Contact
-          </Link>
+
+        {/* Mobile Menu */}
+        <ul
+          className={`${
+            navMobile ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+          } flex flex-col items-center gap-6 mt-4 overflow-hidden transition-all duration-500`}
+        >
+          {["Home", "About Me", "Pictures", "Contact"].map((name) => (
+            <li key={name}>
+              <Link
+                href={`/${name.toLowerCase().replace(" ", "")}`}
+                className="px-6 py-2 rounded-lg hover:bg-white hover:text-black transition-all duration-300"
+              >
+                {name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

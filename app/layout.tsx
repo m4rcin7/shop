@@ -1,5 +1,5 @@
-import Header from "@/components/header.jsx";
-import Footer from "@/components/footer_.jsx";
+import Header from "@/components/Header.jsx";
+import Footer from "@/components/Footer.jsx";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -17,9 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} bg-gradient-to-b from-pink-600 to-pink-800 text-white p-6 lg:p-8 rounded-2xl shadow-2xl shadow-pink-200/50 min-h-screen flex flex-col items-center`}
+      >
         <Header />
-        {children}
+        <main className="w-full max-w-screen-xl flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

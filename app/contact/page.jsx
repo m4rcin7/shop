@@ -1,5 +1,5 @@
-import Section from "@/components/section.jsx";
-import H2 from "@/components/h2.jsx";
+import Section from "@/components/Section.jsx";
+import H2 from "@/components/H2.jsx";
 import { FaInstagram } from "react-icons/fa6";
 import { AiFillTikTok } from "react-icons/ai";
 import { MdOutlineEmail } from "react-icons/md";

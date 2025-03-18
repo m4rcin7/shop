@@ -1,5 +1,5 @@
-import Section from "@/components/section.jsx";
-import H2 from "@/components/h2.jsx";
+import Section from "@/components/Section.jsx";
+import H2 from "@/components/H2.jsx";
 import Image from "next/image";
 import aboutImg from "@/images/aboutImg.jpg";
 
