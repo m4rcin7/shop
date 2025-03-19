@@ -4,9 +4,9 @@ import { AiFillTikTok } from "react-icons/ai";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsFillTelephoneFill } from "react-icons/bs";
 
-export default function Footer() {
+const Footer: React.FC = () => {
   return (
-    <footer className="w-screen bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg p-4 text-white text-center">
+    <footer className="w-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg p-4 text-white text-center">
       <nav>
         <ul className="flex flex-col gap-3 p-3">
           {["Home", "About Me", "Pictures", "Contact"].map((name) => (
@@ -49,4 +49,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
