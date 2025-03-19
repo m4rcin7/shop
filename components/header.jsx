@@ -19,10 +19,10 @@ export default function Header() {
           <FaPaintBrush />
         </Link>
         <ul className="flex items-center gap-10 text-lg">
-          {["Home", "About Me", "Pictures", "Contact"].map((name) => (
+          {["Home", "About", "Pictures", "Contact"].map((name) => (
             <li key={name}>
               <Link
-                href={`/${name.toLowerCase().replace(" ", "")}`}
+                href={name === "Home" ? "/" : `/${name.toLowerCase()}`}
                 className="px-auto py-2 rounded-lg hover:bg-white hover:text-black transition-all duration-300"
               >
                 {name}
