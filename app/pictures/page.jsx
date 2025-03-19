@@ -1,40 +1,50 @@
-import Section from "@/components/Section";
-import PICTURE_DATA from "./data.ts";
-import Image from "next/image";
-import { IoMdAdd } from "react-icons/io";
+"use client";
 
-export default function SectionPictures() {
-  const divWrapper =
-    "p-[50px] flex flex-wrap gap-[50px] justify-center items-center ";
-  const divPicture =
-    "p-[20px] w-[250px] h-max flex flex-col items-center gap-[15px] border-2 border-neutral-900 bg-neutral-300 rounded-xl drop-shadow-xl";
-  const imgStyled = "border-[15px] border-neutral-950";
-  const divDescription =
-    "p-[5px] w-full flex justify-between items-center uppercase text-center font-bold ";
-  const priceStyled = "text-red-400 italic";
-  const buttonAddStyled =
-    "p-2 text-2xl text-neutral-100 bg-neutral-800 rounded-full hover:bg-neutral-500";
+import Image from "next/image";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Section from "@/components/Section";
+import PICTURE_DATA from "../../API_DATA/data";
+import { FaShoppingCart } from "react-icons/fa";
+
+export default function Pictures() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (picture) => {
+    setCart((prevCart) => [...prevCart, picture]);
+  };
 
   return (
-   <Section title="Pictures" className="text-center">
-      <div className={divWrapper}>
+    <Section title="Art Gallery" className="max-w-screen-lg mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {PICTURE_DATA.map((picture) => (
-          <div key={picture.id} id={picture.id} className={divPicture}>
+          <motion.div
+            key={picture.id}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white/10 p-4 rounded-lg shadow-lg backdrop-blur-md flex flex-col items-center text-center"
+          >
             <Image
-              className={imgStyled}
               src={picture.img}
               alt={picture.title}
+              className="rounded-lg mb-4 object-cover"
+              width={200}
+              height={200}
             />
-            <div className={divDescription}>
-              <div>
-                <h3>: {picture.title}</h3>
-                <h3 className={priceStyled}>P: {picture.price}</h3>
-              </div>
-              <button className={buttonAddStyled}>
-                <IoMdAdd />
-              </button>
-            </div>
-          </div>
+            <h3 className="text-xl font-bold text-white mb-2">
+              {picture.title}
+            </h3>
+            <p className="text-lg text-pink-400 font-semibold">
+              {picture.price}
+            </p>
+            <button
+              onClick={() => addToCart(picture)}
+              className="mt-4 px-4 py-2 bg-pink-500 text-white rounded-lg flex items-center gap-2 transition-transform hover:scale-105"
+            >
+              <FaShoppingCart /> Add to Cart
+            </button>
+          </motion.div>
         ))}
       </div>
     </Section>
