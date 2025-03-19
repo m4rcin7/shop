@@ -1,5 +1,4 @@
-import Section from "@/components/Section.jsx";
-import H2 from "@/components/H2.jsx";
+import Section from "@/components/Section";
 import { FaInstagram } from "react-icons/fa6";
 import { AiFillTikTok } from "react-icons/ai";
 import { MdOutlineEmail } from "react-icons/md";
@@ -13,8 +12,7 @@ export default function Contact() {
   const descStyled = "font-bold";
 
   return (
-    <Section>
-      <H2>Contact</H2>
+   <Section title="Contact" className="text-center">
       <div className={divContainer}>
         <div className={divContainerElements}>
           <h3 className={iconStyled}>

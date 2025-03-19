@@ -1,7 +1,7 @@
 "use client";
+
 import Image from "next/image";
 import homeImg from "@/images/teddy-ai.jpg";
-import H2 from "@/components/H2.jsx";
 import Link from "next/link";
 import { useMemo } from "react";
 import { motion } from "framer-motion";
@@ -69,7 +69,7 @@ export default function Home() {
         transition={{ duration: 0.8, delay: 0.4 }}
         className="w-full text-center"
       >
-        <H2>Explore My Themes</H2>
+        <h3>Explore My Themes</h3>
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
           {links.map(({ name, path }) => (
             <motion.div

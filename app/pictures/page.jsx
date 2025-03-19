@@ -1,5 +1,4 @@
-import Section from "@/components/Section.jsx";
-import H2 from "@/components/H2.jsx";
+import Section from "@/components/Section";
 import PICTURE_DATA from "./data.ts";
 import Image from "next/image";
 import { IoMdAdd } from "react-icons/io";
@@ -17,8 +16,7 @@ export default function SectionPictures() {
     "p-2 text-2xl text-neutral-100 bg-neutral-800 rounded-full hover:bg-neutral-500";
 
   return (
-    <Section>
-      <H2>My pictures</H2>
+   <Section title="Pictures" className="text-center">
       <div className={divWrapper}>
         {PICTURE_DATA.map((picture) => (
           <div key={picture.id} id={picture.id} className={divPicture}>
