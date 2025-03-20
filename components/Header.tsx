@@ -78,6 +78,7 @@ export default function Header() {
                   <Link
                     href={name === "Home" ? "/" : `/${name.toLowerCase()}`}
                     className="block px-6 py-2 rounded-lg transition-all duration-300 text-white hover:bg-purple-400 hover:text-white"
+                    onClick={() => setNavMobile(false)} // Zamknięcie menu po kliknięciu
                   >
                     {name}
                   </Link>
