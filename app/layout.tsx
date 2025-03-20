@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Painting Shop",
 };
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} w-full bg-gradient-to-br from-slate-500 to-stone-800 text-white p-6 lg:p-8 rounded-2xl shadow-2xl shadow-pink-200/50 flex flex-col items-center`}
+        className={`${inter.className} w-full bg-gradient-to-br from-slate-500 to-stone-800 text-white rounded-2xl shadow-2xl shadow-pink-200/50 flex flex-col items-center`}
       >
         <LoadingScreen />
         <Header />

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function Home() {
+export default function Page() {
   return (
     <div className="relative w-full h-full min-h-screen flex flex-col items-center justify-center text-white overflow-hidden">
       <motion.div
