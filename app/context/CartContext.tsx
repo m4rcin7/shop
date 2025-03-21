@@ -44,7 +44,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const removeFromCart = (id: number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    setCart((prevCart) =>
+      prevCart
+        .map((item) => {
+          if (item.id === id) {
+            if ((item.quantity || 1) > 1) {
+              return { ...item, quantity: (item.quantity || 1) - 1 };
+            } else {
+              return null;
+            }
+          }
+          return item;
+        })
+        .filter((item): item is Picture => item !== null)
+    );
   };
 
   return (
