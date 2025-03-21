@@ -6,6 +6,8 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+import { CartProvider } from "./context/CartContext";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,9 +25,13 @@ export default function DashboardLayout({
         className={`${inter.className} w-full bg-gradient-to-br from-slate-500 to-stone-800 text-white rounded-2xl shadow-2xl shadow-pink-200/50 flex flex-col items-center`}
       >
         <LoadingScreen />
-        <Header />
-        <main className="my-12 mb-12 w-full h-full flex-grow">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <main className="my-12 mb-12 w-full h-full flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

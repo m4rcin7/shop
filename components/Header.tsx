@@ -6,9 +6,17 @@ import { FaPaintBrush } from "react-icons/fa";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { TbMenuDeep } from "react-icons/tb";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/app/context/CartContext";
+import type { Picture } from "@/types/Picture";
 
 export default function Header() {
   const [navMobile, setNavMobile] = useState(false);
+  const { cart } = useCart();
+
+  const totalItems: number = cart.reduce<number>(
+    (sum: number, item: Picture) => sum + (item.quantity ?? 1),
+    0
+  );
 
   return (
     <header className="w-full bg-[#1a1a2e] shadow-md fixed top-0 left-0 z-50">
@@ -33,12 +41,20 @@ export default function Header() {
             </li>
           ))}
         </ul>
-        <Link
-          href="/store"
-          className="text-3xl font-bold hover:scale-110 transition"
-        >
-          <MdOutlineLocalGroceryStore className="text-purple-400" />
-        </Link>
+
+        <div className="relative">
+          <Link
+            href="/cart"
+            className="text-3xl font-bold hover:scale-110 transition relative"
+          >
+            <MdOutlineLocalGroceryStore className="text-purple-400" />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {totalItems}
+              </span>
+            )}
+          </Link>
+        </div>
       </nav>
 
       {/* Mobile Navigation */}
@@ -51,12 +67,21 @@ export default function Header() {
             <FaPaintBrush className="text-purple-400" />
           </Link>
           <div className="flex items-center gap-6">
-            <Link
-              href="/store"
-              className="text-3xl font-bold hover:scale-110 transition"
-            >
-              <MdOutlineLocalGroceryStore className="text-purple-400" />
-            </Link>
+            <div className="relative">
+              <Link
+                href="/cart"
+                className="text-3xl font-bold hover:scale-110 transition relative"
+              >
+                <MdOutlineLocalGroceryStore className="text-purple-400" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
+            </div>
+
+            {/* Hamburger */}
             <TbMenuDeep
               onClick={() => setNavMobile(!navMobile)}
               className="text-4xl cursor-pointer text-purple-400 hover:scale-110 transition"
@@ -78,7 +103,7 @@ export default function Header() {
                   <Link
                     href={name === "Home" ? "/" : `/${name.toLowerCase()}`}
                     className="block px-6 py-2 rounded-lg transition-all duration-300 text-white hover:bg-purple-400 hover:text-white"
-                    onClick={() => setNavMobile(false)} // Zamknięcie menu po kliknięciu
+                    onClick={() => setNavMobile(false)}
                   >
                     {name}
                   </Link>

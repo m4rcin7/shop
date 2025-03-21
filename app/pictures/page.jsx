@@ -1,18 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Section from "@/components/Section";
 import PICTURE_DATA from "../../API_DATA/data";
+import { motion } from "framer-motion";
 import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from "@/app/context/CartContext";
 
 export default function Pictures() {
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (picture) => {
-    setCart((prevCart) => [...prevCart, picture]);
-  };
+  const { addToCart } = useCart();
 
   return (
     <Section title="Art Gallery" className="max-w-screen-lg mx-auto">
@@ -36,7 +32,7 @@ export default function Pictures() {
               {picture.title}
             </h3>
             <p className="text-lg text-pink-400 font-semibold">
-              {picture.price}
+              {picture.price} $
             </p>
             <button
               onClick={() => addToCart(picture)}
