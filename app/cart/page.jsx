@@ -29,6 +29,7 @@ export default function Cart() {
             >
               <span className="text-white capitalize">{item.title}</span>
               <span>{item.quantity} quantity</span>
+              <span>{item.price} $</span>
               <button
                 onClick={() => addToCart(item)}
                 className="px-4 py-2 bg-green-500 text-white rounded-lg transition-transform hover:scale-105"
