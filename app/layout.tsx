@@ -12,6 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Painting Shop",
+  description: "Your one-stop shop for beautiful paintings.",
 };
 
 export default function DashboardLayout({
